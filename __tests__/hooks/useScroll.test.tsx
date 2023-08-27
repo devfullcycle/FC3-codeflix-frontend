@@ -1,27 +1,23 @@
 import { useScroll } from '@/app/hooks/useScroll';
-import { renderHook, waitFor, act } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react';
 
 describe('useScroll', () => {
-  it('should respond to scroll events', async () => {
-    // set up the hook
+  it('should respond to scroll events', () => {
     const { result } = renderHook(() => useScroll());
 
-    // simulate a scroll event
     act(() => {
-      global.window.scrollY = 500;
+      global.window.scrollY = 100;
       global.window.dispatchEvent(new Event('scroll'));
     });
 
-    // wait for the hook to update
-    await waitFor(() => expect(result.current).toBeTruthy());
+    expect(result.current).toBe(true);
 
-    // simulate a scroll event to top
     act(() => {
       global.window.scrollY = 0;
       global.window.dispatchEvent(new Event('scroll'));
     });
 
-    // wait for the hook to update
-    await waitFor(() => expect(result.current).toBeFalsy());
+    expect(result.current).toBe(false);
+
   });
 });
