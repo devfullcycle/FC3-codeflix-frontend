@@ -1,9 +1,8 @@
 import Image from 'next/image';
 
-type Props = {
+type MovieRowProps = {
   sectionTitle: string;
 };
-
 type MovieCardProps = {
   index: number;
 };
@@ -19,18 +18,19 @@ const MovieCard = ({ index }: MovieCardProps) => (
   </div>
 );
 
-export const MovieRow = ({ sectionTitle }: Props) => (
-  <div className='flex-col space-y-4 pl-2'>
-    <div className='flex'>
-      <h2 className='-ml-2 inline-flex items-center text-2xl font-bold'>
-        {sectionTitle}
-      </h2>
+export function MovieRow({ sectionTitle }: MovieRowProps) {
+  return (
+    <div className='flex-col space-y-4 pl-2'>
+      <div className='flex'>
+        <h2 className='-ml-2 inline-flex items-center text-2xl font-bold'>
+          {sectionTitle}
+        </h2>
+      </div>
+      <div className='-ml-8 flex space-x-4 overflow-x-scroll p-6 scrollbar-hide'>
+        {[1, 2, 3, 4, 5, 5, 5, 5].map((index) => (
+          <MovieCard key={index} index={index} />
+        ))}
+      </div>
     </div>
-
-    <div className='-ml-8 flex space-x-4 overflow-x-scroll p-6 scrollbar-hide'>
-      {[1, 2, 3, 4, 5, 6, 2].map((index) => (
-        <MovieCard key={index} index={index} />
-      ))}
-    </div>
-  </div>
-);
+  );
+}
