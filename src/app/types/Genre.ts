@@ -11,11 +11,12 @@ export type Genre = {
 };
 
 export enum Genres {
-  Action = 'Ação',
+  Animation = 'Animation',
+  Action = 'Action',
   Drama = 'Drama',
-  Terror = 'Terror',
-  Commedy = 'Comédia',
+  Terror = 'Horror',
+  Commedy = 'Comedy',
   Romance = 'Romance',
-  Adventure = 'Aventura',
-  SiFi = 'Ficção Científica',
+  Adventure = 'Adventure',
+  SiFi = 'Sci-Fi',
 }

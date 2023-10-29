@@ -1,5 +1,3 @@
-import { CastMember } from './CastMember';
-import { Category } from './Category';
 import { Genre } from './Genre';
 import { Rating } from './Rating';
 
