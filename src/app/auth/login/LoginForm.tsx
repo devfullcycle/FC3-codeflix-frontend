@@ -12,8 +12,6 @@ export default function LoginForm() {
   const router = useRouter();
   const [errors, setErrors] = useState<string[]>([]);
 
-  console.log(errors);
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
