@@ -1,40 +1,79 @@
 import { Movie } from '../types/Movie';
 
-const API_URL = 'http://localhost:3333/';
+const API_URL = 'https://codeflix-api.vercel.app/';
 
-const apiRequest = async (endpoint: string): Promise<Movie[]> => {
+interface RequestOptions {
+  page?: number;
+  _limit?: number;
+}
+
+const defaultOptions: RequestOptions = {
+  page: 1,
+  _limit: 10,
+};
+
+interface ApiQueryParameters {
+  [key: string]: string | number | boolean;
+}
+
+export async function apiRequest<T>(
+  endpoint: string,
+  query: ApiQueryParameters = {},
+  options: RequestOptions = {}
+): Promise<T> {
+  const mergedOptions: RequestOptions = { ...defaultOptions, ...options };
+  const queryString: string = buildQueryString({ ...query, ...mergedOptions });
+
   try {
-    const response = await fetch(`${API_URL}${endpoint}`);
+    const response = await fetch(`${API_URL}${endpoint}${queryString}`);
     if (!response.ok) {
       throw new Error(`API request failed: ${response.statusText}`);
     }
     return response.json();
   } catch (error) {
-    console.error(error);
     throw error;
   }
-};
+}
 
-export const getMovies = async (page: number = 1): Promise<Movie[]> => {
-  return apiRequest(`movies?_page=${page}`);
-};
+function buildQueryString(params: ApiQueryParameters): string {
+  const query = Object.entries(params)
+    .filter(([, value]) => value !== undefined)
+    .map(([key, value]) => [key, encodeURIComponent(String(value))]);
 
-export const getMoviesByTitle = async (
-  title: string,
-  page: number = 1
+  return `?${new URLSearchParams(Object.fromEntries(query)).toString()}`;
+}
+
+export const searchMovies = async (
+  title: string = '',
+  genre: string = '',
+  options?: RequestOptions
 ): Promise<Movie[]> => {
-  return apiRequest(`movies?title_like=${encodeURIComponent(title)}`);
+  const query: Record<string, string> = {
+    title_like: encodeURIComponent(title),
+  };
+
+  if (genre) {
+    query.genres_like = encodeURIComponent(genre);
+  }
+
+  return apiRequest('movies', query, options);
 };
 
-export const getMovieById = async (id: string): Promise<Movie[]> => {
+export const getMovieById = async (id: string): Promise<Movie> => {
   return apiRequest(`movies/${encodeURIComponent(id)}`);
 };
 
-export const getMovieByGenre = async (
-  genre: string = '',
-  page: number = 6
+export const getFeaturedMovies = async (id: string): Promise<Movie> => {
+  return apiRequest(`featured/${id}`);
+};
+
+export const getMoviesByGenre = async (
+  genre: string,
+  options?: RequestOptions
 ): Promise<Movie[]> => {
   return apiRequest(
-    `movies?genres_like=${encodeURIComponent(genre)}&_limit=${page}`
+    'movies',
+    { genres_like: encodeURIComponent(genre) },
+    options
   );
 };
