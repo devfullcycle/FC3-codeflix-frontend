@@ -1,10 +1,8 @@
-import '@vidstack/react/player/styles/base.css';
-import { MediaPlayer, MediaProvider, Poster } from '@vidstack/react';
-import React from 'react';
-import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { getMovieById } from '../service/MovieService';
-import { Movie } from '../types/Movie';
+import { Movie } from '@/app/types/Movie';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { MediaPlayer, MediaProvider } from '@vidstack/react';
+import '@vidstack/react/player/styles/base.css';
 
 type Props = {
   movie: Movie;
@@ -27,7 +25,7 @@ export default async function Player({ movie }: Props) {
             <h1 className='text-2xl font-bold md:text-4xl lg:text-7xl'>
               {movie.title}
             </h1>
-            <p className='mt-4 text-shadow-md max-w-xs text-xs md:max-w-lg md:text-lg lg:max-w-2xl'>
+            <p className='text-shadow-md mt-4 max-w-xs text-xs md:max-w-lg md:text-lg lg:max-w-2xl'>
               {movie.description}
             </p>
           </div>

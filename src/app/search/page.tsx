@@ -1,18 +1,20 @@
-import Header from '../components/Header';
-import { MovieCard } from '../components/MovieCard';
-import { searchMovies } from '../service/MovieService';
+import Header from '@/app/components/Header';
+import { MovieCard } from '@/app/components/MovieCard';
+import { searchMovies } from '@/app/service/MovieService';
 
-type SearchProps = {
-  searchParams?: {
-    [key: string]: string | string[] | undefined;
-  };
-};
+interface ISearchParams {
+  title?: string;
+  genre?: string;
+}
 
-async function SearchResults({ searchParams }: SearchProps) {
-  const movieTitle = searchParams?.title as string;
-  const movieGenre = searchParams?.genre as string;
+interface ISearchProps {
+  searchParams: ISearchParams;
+}
 
-  const movies = await searchMovies(movieTitle, movieGenre);
+export default async function SearchResults({ searchParams }: ISearchProps) {
+  const { title, genre } = searchParams;
+
+  const movies = await searchMovies(title, genre);
 
   if (movies.length === 0) {
     return (
@@ -21,8 +23,7 @@ async function SearchResults({ searchParams }: SearchProps) {
           <Header />
           <main className='relative mb-48 mt-20 h-screen pl-4 lg:pl-16 '>
             <h1 className='mb-4 text-2xl font-bold'>
-              Search results for:{' '}
-              <span className='text-red-500'>{movieTitle}</span>
+              Search results for: <span className='text-red-500'>{title}</span>
             </h1>
             <p className='text-xl'>No movies found</p>
           </main>
@@ -35,12 +36,10 @@ async function SearchResults({ searchParams }: SearchProps) {
     <div>
       <div className='relative bg-gradient-to-b pb-8'>
         <Header />
-        <main className='relative mb-20 mt-20  pl-4 lg:pl-16 '>
+        <main className='relative mb-48 mt-20 h-screen pl-4 lg:pl-16 '>
           <h1 className='mb-4 text-2xl font-bold'>
-            Search results for:{' '}
-            <span className='text-red-500'>{movieTitle}</span>
+            Search results for: <span className='text-red-500'>{title}</span>
           </h1>
-
           <div className='grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-8 lg:gap-8'>
             {movies.map((movie, index) => (
               <MovieCard key={index} movie={movie} />
@@ -51,5 +50,3 @@ async function SearchResults({ searchParams }: SearchProps) {
     </div>
   );
 }
-
-export default SearchResults;

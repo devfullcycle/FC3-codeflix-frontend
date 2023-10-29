@@ -1,13 +1,20 @@
-import { getMovieById } from '@/app/service/MovieService';
-import Player from '../../components/Player';
 import Header from '@/app/components/Header';
+import Player from '@/app/components/Player';
+import { getMovieById } from '@/app/service/MovieService';
 
-export default async function Watch({ params }: { params: { id: string } }) {
-  const movieId = params?.id as string;
+interface IWatchProps {
+  params: {
+    id: string;
+  };
+}
+
+export default async function Watch({ params }: IWatchProps) {
+  const movieId = params?.id;
+
   const movie = await getMovieById(movieId);
 
   if (!movie) {
-  return (
+    return (
       <div className='flex h-screen justify-center align-middle'>
         <Header />
         <main className='flex flex-1 flex-col items-center justify-center px-20 text-center'>

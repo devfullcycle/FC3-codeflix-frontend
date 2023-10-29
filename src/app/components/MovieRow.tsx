@@ -1,6 +1,6 @@
-import { getMoviesByGenre } from '../service/MovieService';
-import { Movie as MovieType } from '../types/Movie';
-import { MovieCard } from './MovieCard';
+import { Movie as MovieType } from '@/app/types/Movie';
+import { MovieCard } from '@/app/components/MovieCard';
+import { getMoviesByGenre } from '@/app/service/MovieService';
 
 interface MovieRowProps {
   sectionTitle: string;

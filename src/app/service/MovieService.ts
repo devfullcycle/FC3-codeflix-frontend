@@ -1,6 +1,7 @@
 import { Movie } from '../types/Movie';
+import { config } from '@/app/config';
 
-const API_URL = 'https://codeflix-api.vercel.app/';
+const { API_URL } = config;
 
 interface RequestOptions {
   page?: number;
@@ -25,7 +26,7 @@ export async function apiRequest<T>(
   const queryString: string = buildQueryString({ ...query, ...mergedOptions });
 
   try {
-    const response = await fetch(`${API_URL}${endpoint}${queryString}`);
+    const response = await fetch(`${API_URL}/${endpoint}${queryString}`);
     if (!response.ok) {
       throw new Error(`API request failed: ${response.statusText}`);
     }

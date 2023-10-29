@@ -1,12 +1,13 @@
+import { config } from '@/app/config';
+import { getFeaturedMovies } from '@/app/service/MovieService';
 import { InformationCircleIcon, PlayIcon } from '@heroicons/react/24/outline';
+
 import Image from 'next/image';
-import { getFeaturedMovies } from '../service/MovieService';
 import Link from 'next/link';
 
-export async function Banner() {
-  const possibleMovies = ['101', '102', '103', '104', '105', '106'];
+export async function Banner(): Promise<JSX.Element> {
   const randomMovieId =
-    possibleMovies[Math.floor(Math.random() * possibleMovies.length)];
+    config.featuredIds[Math.floor(Math.random() * config.featuredIds.length)];
   const movie = await getFeaturedMovies(randomMovieId);
 
   return (

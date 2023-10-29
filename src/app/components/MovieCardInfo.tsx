@@ -5,9 +5,10 @@ import {
   SpeakerWaveIcon,
   UserGroupIcon,
 } from '@heroicons/react/24/outline';
+import { MovieRating } from '@/app/components/MovieRating';
+import { Genre } from '@/app/types/Genre';
+
 import Image from 'next/image';
-import { MovieRating } from './MovieRating';
-import { Genre } from '../types/Genre';
 import Link from 'next/link';
 
 type Props = {
@@ -34,8 +35,6 @@ export const MovieCardInfo: React.FC<Props> = ({
         height={400}
         className='duration h-[12vw] w-full cursor-pointer rounded-t-md object-cover object-top shadow-xl transition'
       />
-
-
 
       <div className='absolute z-10 w-full rounded-b-md bg-zinc-800 p-2 shadow-md transition lg:p-4 '>
         <div className='flex flex-row items-center justify-between gap-2'>
