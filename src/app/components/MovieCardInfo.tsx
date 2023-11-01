@@ -1,3 +1,5 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   ChevronDownIcon,
   PlayIcon,
@@ -7,9 +9,6 @@ import {
 } from '@heroicons/react/24/outline';
 import { MovieRating } from '@/app/components/MovieRating';
 import { Genre } from '@/app/types/Genre';
-
-import Image from 'next/image';
-import Link from 'next/link';
 
 type Props = {
   id: string;
@@ -52,8 +51,10 @@ export const MovieCardInfo: React.FC<Props> = ({
             <ChevronDownIcon className='w-4 lg:w-6' />
           </div>
         </div>
-        <div className='mt-4 text-xl font-bold'>{title}</div>
-        <div className='mt-4 flex flex-row items-center gap-4'>
+        <div className='mt-4 text-sm font-bold text-white lg:text-lg'>
+          {title}
+        </div>
+        <div className='mt-4 flex flex-col gap-2 text-sm'>
           <div className='flex flex-row items-center gap-2'>
             <SpeakerWaveIcon className='w-4' /> Double Atmos 5.1 4K
           </div>

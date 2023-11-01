@@ -10,6 +10,7 @@ type AuthFormProps = {
 export const AuthForm: React.FC<AuthFormProps> = ({ formType, onSubmit }) => {
   return (
     <form
+      role='form'
       onSubmit={onSubmit}
       className='flex w-full max-w-md flex-col space-y-4 rounded bg-[#141414] bg-opacity-90 px-4 py-8 shadow-lg'
     >

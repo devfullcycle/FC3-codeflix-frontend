@@ -1,18 +1,18 @@
 import { Movie as MovieType } from '@/app/types/Movie';
 import { MovieCard } from '@/app/components/MovieCard';
-import { getMoviesByGenre } from '@/app/service/MovieService';
 
 interface MovieRowProps {
   sectionTitle: string;
+  movies: MovieType[];
 }
 
 export interface MovieCardProps {
   movie: MovieType;
 }
-export const MovieRow: React.FC<MovieRowProps> = async ({ sectionTitle }) => {
-  const movies = await getMoviesByGenre(sectionTitle, {
-    _limit: 8,
-  });
+export const MovieRow: React.FC<MovieRowProps> = async ({
+  sectionTitle,
+  movies,
+}) => {
   return (
     <div className='flex-col space-y-2'>
       <div className='flex'>

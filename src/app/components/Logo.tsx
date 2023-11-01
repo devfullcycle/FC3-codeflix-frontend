@@ -7,5 +7,6 @@ export const Logo = () => (
     width={90}
     height={90}
     className='cursor-pointer'
+
   />
 );

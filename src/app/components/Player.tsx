@@ -34,7 +34,6 @@ export default async function Player({ movie }: Props) {
         </div>
 
         <MediaProvider className='relative mx-auto flex aspect-video max-w-fit justify-center rounded-md align-middle'>
-          {/* visible on lg */}
           <div className='invisible absolute left-8 top-96 z-50 transition-opacity duration-500 media-playing:opacity-0 md:visible'>
             <h1 className='text-2xl font-bold md:text-4xl lg:text-7xl'>
               {movie.title}

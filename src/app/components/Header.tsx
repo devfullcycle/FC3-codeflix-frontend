@@ -6,8 +6,7 @@ import { useScroll } from '@/app/hooks/useScroll';
 import { SearchForm } from '@/app/components/SearchForm';
 import { HeaderLayout } from '@/app/components/HeaderLayout';
 
-
-export default function Header(): JSX.Element {
+export function Header(): JSX.Element {
   const isScrolled = useScroll();
   const router = useRouter();
   const params = useSearchParams();
@@ -35,5 +34,3 @@ export default function Header(): JSX.Element {
     </HeaderLayout>
   );
 }
-
-

@@ -1,16 +1,18 @@
 'use client';
+import Link from 'next/link';
+import React from 'react';
+
 import { Logo } from '@/app/components/Logo';
 import { NavLinks } from '@/app/components/NavLinks';
 import { UserProfile } from '@/app/components/UserProfile';
-import Link from 'next/link';
-import React from 'react';
 
 interface IHeaderLayoutProps {
   isScrolled: boolean;
   children: React.ReactNode;
 }
 export function HeaderLayout({
-  isScrolled, children,
+  isScrolled,
+  children,
 }: IHeaderLayoutProps): JSX.Element {
   return (
     <header
