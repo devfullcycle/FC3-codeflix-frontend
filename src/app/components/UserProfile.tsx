@@ -1,13 +1,8 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { useSession, signIn, signOut, SessionProvider } from 'next-auth/react';
-
+import { useSession, signOut, SessionProvider } from 'next-auth/react';
 import Image from 'next/image';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import {
-  getCurrentProfile,
-  selectProfile,
-} from '@/app/lib/actions/profileActions';
 
 type ProfileType = {
   name: string;
@@ -38,21 +33,9 @@ export const UserProfiles: React.FC = () => {
   };
 
   const handleProfileSelect = async (profile: ProfileType) => {
-    await selectProfile(profile);
-
     setSelectedProfile(profile);
     toggleDropdown();
   };
-
-  useEffect(() => {
-    const fetchCurrentProfile = async () => {
-      const profile = await getCurrentProfile();
-      if (profile) {
-        setSelectedProfile(profile);
-      }
-    };
-    fetchCurrentProfile();
-  }, []);
 
   useEffect(() => {
     if (
