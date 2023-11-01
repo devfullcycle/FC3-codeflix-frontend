@@ -1,4 +1,4 @@
-import Header from '@/app/components/Header';
+import { Header } from '@/app/components/Header';
 import Player from '@/app/components/Player';
 import { getMovieById } from '@/app/service/MovieService';
 

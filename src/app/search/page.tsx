@@ -1,4 +1,4 @@
-import Header from '@/app/components/Header';
+import { Header } from '@/app/components/Header';
 import { MovieCard } from '@/app/components/MovieCard';
 import { searchMovies } from '@/app/service/MovieService';
 
